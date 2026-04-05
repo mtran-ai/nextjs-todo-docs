@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NextJS Todo - Design Direction Mockups</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f5f5f5;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #111827;
+            font-size: 32px;
+        }
+
+        .intro {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .directions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .direction {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .direction:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+        }
+
+        .direction-title {
+            padding: 20px;
+            background: #f9fafb;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .direction-title h2 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 4px;
+        }
+
+        .direction-description {
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+        .mockup {
+            padding: 24px;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Direction 1: Minimal/Clean */
+        .dir1 .mockup {
+            background: white;
+        }
+
+        .dir1 .task {
+            padding: 12px 0;
+            border-bottom: 1px solid #f3f4f6;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .dir1 .task:last-child {
+            border-bottom: none;
+        }
+
+        .dir1 .checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #d1d5db;
+            border-radius: 4px;
+            flex-shrink: 0;
+            margin-top: 2px;
+            cursor: pointer;
+        }
+
+        .dir1 .task.done .checkbox {
+            background: #10b981;
+            border-color: #10b981;
+        }
+
+        .dir1 .task.done .title {
+            color: #9ca3af;
+            text-decoration: line-through;
+        }
+
+        .dir1 .content {
+            flex: 1;
+        }
+
+        .dir1 .title {
+            font-size: 14px;
+            color: #111827;
+            margin-bottom: 4px;
+        }
+
+        .dir1 .meta {
+            font-size: 12px;
+            color: #9ca3af;
+        }
+
+        /* Direction 2: Contemporary/Gradient */
+        .dir2 .mockup {
+            background: linear-gradient(135deg, #f0f9ff 0%, #f5f3ff 100%);
+        }
+
+        .dir2 .task {
+            padding: 16px;
+            margin-bottom: 12px;
+            background: white;
+            border-radius: 8px;
+            border-left: 4px solid #2563eb;
+            display: flex;
+            gap: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .dir2 .task:hover {
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.12);
+            transform: translateX(4px);
+        }
+
+        .dir2 .task.done {
+            border-left-color: #10b981;
+            background: #f0fdf4;
+        }
+
+        .dir2 .checkbox {
+            width: 24px;
+            height: 24px;
+            border: 2px solid #2563eb;
+            border-radius: 6px;
+            flex-shrink: 0;
+        }
+
+        .dir2 .task.done .checkbox {
+            background: #10b981;
+            border-color: #10b981;
+        }
+
+        .dir2 .title {
+            font-size: 14px;
+            font-weight: 500;
+            color: #111827;
+        }
+
+        .dir2 .task.done .title {
+            color: #6b7280;
+        }
+
+        /* Direction 3: Cards/Depth */
+        .dir3 .mockup {
+            background: #f9fafb;
+        }
+
+        .dir3 .task {
+            padding: 16px;
+            margin-bottom: 16px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            display: flex;
+            gap: 12px;
+            cursor: pointer;
+        }
+
+        .dir3 .task:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .dir3 .checkbox {
+            width: 24px;
+            height: 24px;
+            border: 2px solid #d1d5db;
+            border-radius: 6px;
+            flex-shrink: 0;
+        }
+
+        .dir3 .task.done .checkbox {
+            background: #10b981;
+            border: 2px solid #10b981;
+        }
+
+        .dir3 .title {
+            font-size: 15px;
+            color: #111827;
+        }
+
+        .dir3 .task.done .title {
+            color: #9ca3af;
+        }
+
+        /* Direction 4: Flat/Bold */
+        .dir4 .mockup {
+            background: #fff8f0;
+        }
+
+        .dir4 .task {
+            padding: 14px;
+            margin-bottom: 10px;
+            background: white;
+            border-bottom: 3px solid #f59e0b;
+            display: flex;
+            gap: 12px;
+            cursor: pointer;
+        }
+
+        .dir4 .task.done {
+            border-bottom-color: #10b981;
+            opacity: 0.6;
+        }
+
+        .dir4 .checkbox {
+            width: 22px;
+            height: 22px;
+            background: #f3f4f6;
+            border: 3px solid #f59e0b;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+
+        .dir4 .task.done .checkbox {
+            background: #10b981;
+            border-color: #10b981;
+        }
+
+        .dir4 .title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #111827;
+        }
+
+        /* Direction 5: Compact/Efficient */
+        .dir5 .mockup {
+            background: white;
+        }
+
+        .dir5 .task {
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+        }
+
+        .dir5 .task:last-child {
+            border-bottom: none;
+        }
+
+        .dir5 .checkbox {
+            width: 18px;
+            height: 18px;
+            border: 1.5px solid #ccc;
+            border-radius: 3px;
+            flex-shrink: 0;
+        }
+
+        .dir5 .task.done .checkbox {
+            background: #2563eb;
+            border-color: #2563eb;
+        }
+
+        .dir5 .title {
+            color: #444;
+        }
+
+        .dir5 .task.done .title {
+            color: #999;
+            text-decoration: line-through;
+        }
+
+        /* Direction 6: Elegant/Serif */
+        .dir6 .mockup {
+            background: #fafaf8;
+        }
+
+        .dir6 .task {
+            padding: 16px;
+            margin-bottom: 14px;
+            background: white;
+            border-radius: 2px;
+            border-left: 3px solid #92400e;
+            display: flex;
+            gap: 14px;
+            cursor: pointer;
+        }
+
+        .dir6 .checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #92400e;
+            border-radius: 2px;
+            flex-shrink: 0;
+        }
+
+        .dir6 .task.done .checkbox {
+            background: #92400e;
+            border-color: #92400e;
+        }
+
+        .dir6 .title {
+            font-size: 15px;
+            color: #2c2c2c;
+            font-weight: 500;
+        }
+
+        .dir6 .task.done .title {
+            color: #9ca3af;
+        }
+
+        /* Direction 7: Dark/Modern */
+        .dir7 .mockup {
+            background: #1f2937;
+        }
+
+        .dir7 .task {
+            padding: 16px;
+            margin-bottom: 12px;
+            background: #374151;
+            border-radius: 8px;
+            border-left: 4px solid #3b82f6;
+            display: flex;
+            gap: 12px;
+            cursor: pointer;
+        }
+
+        .dir7 .task.done {
+            background: #1f2937;
+            border-left-color: #10b981;
+        }
+
+        .dir7 .checkbox {
+            width: 22px;
+            height: 22px;
+            border: 2px solid #4b5563;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+
+        .dir7 .task.done .checkbox {
+            background: #10b981;
+            border-color: #10b981;
+        }
+
+        .dir7 .title {
+            font-size: 14px;
+            color: #f3f4f6;
+        }
+
+        .dir7 .task.done .title {
+            color: #9ca3af;
+        }
+
+        /* Direction 8: Colorful/Personality */
+        .dir8 .mockup {
+            background: linear-gradient(to bottom, #f8fafc, #f0f9ff);
+        }
+
+        .dir8 .task {
+            padding: 14px;
+            margin-bottom: 12px;
+            background: white;
+            border-radius: 8px;
+            border-top: 4px solid #0d9488;
+            display: flex;
+            gap: 12px;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .dir8 .task.done {
+            background: #f0fdf4;
+            border-top-color: #10b981;
+        }
+
+        .dir8 .checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #0d9488;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+
+        .dir8 .task.done .checkbox {
+            background: #10b981;
+            border-color: #10b981;
+        }
+
+        .dir8 .title {
+            font-size: 14px;
+            color: #0d9488;
+            font-weight: 500;
+        }
+
+        .dir8 .task.done .title {
+            color: #059669;
+        }
+
+        .evaluation {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+            margin-top: 40px;
+        }
+
+        .evaluation h2 {
+            font-size: 24px;
+            margin-bottom: 24px;
+            color: #111827;
+        }
+
+        .evaluation-criteria {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+        }
+
+        .criterion {
+            padding: 20px;
+            background: #f9fafb;
+            border-radius: 8px;
+            border-left: 4px solid #2563eb;
+        }
+
+        .criterion-title {
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 8px;
+        }
+
+        .criterion-desc {
+            font-size: 13px;
+            color: #6b7280;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 NextJS Todo Design Directions</h1>
+
+        <div class="intro">
+            <p>Explore 8 different visual directions for the redesigned NextJS Todo. Each direction applies our core design principles in different ways. Take time to explore how each feels and which aligns best with your vision.</p>
+        </div>
+
+        <div class="directions-grid">
+            <!-- Direction 1: Minimal/Clean -->
+            <div class="direction dir1">
+                <div class="direction-title">
+                    <h2>Direction 1: Minimal Clean</h2>
+                    <p class="direction-description">Maximum whitespace, essential elements only. Lines separate items. Very zen.</p>
+                </div>
+                <div class="mockup">
+                    <div class="task">
+                        <div class="checkbox"></div>
+                        <div class="content">
+                            <div class="title">Review design mockups</div>
+                            <div class="meta">Due: Today</div>
+                        </div>
+                    </div>
+                    <div class="task done">
+                        <div class="checkbox"></div>
+                        <div class="content">
+                            <div class="title">Complete PRD review</div>
+                            <div class="meta">Due: Yesterday</div>
+                        </div>
+                    </div>
+                    <div class="task">
+                        <div class="checkbox"></div>
+                        <div class="content">
+                            <div class="title">Schedule team standup</div>
+                            <div class="meta">Due: Tomorrow</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Direction 2: Contemporary/Gradient -->
+            <div class="direction dir2">
+                <div class="direction-title">
+                    <h2>Direction 2: Contemporary Gradient</h2>
+                    <p class="direction-description">Gradient backgrounds, colored left borders, subtle shadows and motion.</p>
+                </div>
+                <div class="mockup">
+                    <div class="task">
+                        <div class="checkbox"></div>
+                        <div class="content">
+                            <div class="title">Review design mockups</div>
+                        </div>
+                    </div>
+                    <div class="task done">
+                        <div class="checkbox"></div>
+                        <div class="content">
+                            <div class="title">Complete PRD review</div>
+                        </div>
+                    </div>
+                    <div class="task">
+                        <div class="checkbox"></div>
+                        <div class="content">
+                            <div class="title">Schedule team standup</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Direction 3: Cards/Depth -->
+            <div class="direction dir3">
+                <div class="direction-title">
+                    <h2>Direction 3: Cards & Depth</h2>
+                    <p class="direction-description">Card-based layout with generous shadows and spacing. Clear separation.</p>
+                </div>
+                <div class="mockup">
+                    <div class="task">
+                        <div class="checkbox"></div>
+                        <div class="content">
+                            <div class="title">Review design mockups</div>
+                        </div>
+                    </div>
+                    <div class="task done">
+                        <div class="checkbox"></div>
+                        <div class="content">
+                            <div class="title">Complete PRD review</div>
+                        </div>
+                    </div>
+                    <div class="task">
+                        <div class="checkbox"></div>
+                        <div class="content">
+                            <div class="title">Schedule team standup</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Direction 4: Flat/Bold -->
+            <div class="direction dir4">
+                <div class="direction-title">
+                    <h2>Direction 4: Flat Bold</h2>
+                    <p class="direction-description">Flat design with bold color bars. Heavy typography. Direct and energetic.</p>
+                </div>
+                <div class="mockup">
+                    <div class="task">
+                        <div class="checkbox"></div>
+                        <div class="content">
+                            <div class="title">Review design mockups</div>
+                        </div>
+                    </div>
+                    <div class="task done">
+                        <div class="checkbox"></div>
+                        <div class="content">
+                            <div class="title">Complete PRD review</div>
+                        </div>
+                    </div>
+                    <div class="task">
+                        <div class="checkbox"></div>
+                        <div class="content">
+                            <div class="title">Schedule team standup</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Direction 5: Compact/Efficient -->
+            <div class="direction dir5">
+                <div class="direction-title">
+                    <h2>Direction 5: Compact Efficient</h2>
+                    <p class="direction-description">Information-dense, small type, minimal spacing. Maximum content visibility.</p>
+                </div>
+                <div class="mockup">
+                    <div class="task">
+                        <div class="checkbox"></div>
+                        <div class="title">Review design mockups – Due Today</div>
+                    </div>
+                    <div class="task done">
+                        <div class="checkbox"></div>
+                        <div class="title">Complete PRD review – Due Yesterday</div>
+                    </div>
+                    <div class="task">
+                        <div class="checkbox"></div>
+                        <div class="title">Schedule team standup – Due Tomorrow</div>
+                    </div>
+                    <div class="task">
+                        <div class="checkbox"></div>
+                        <div class="title">Update design documentation</div>
+                    </div>
+                    <div class="task">
+                        <div class="checkbox"></div>
+                        <div class="title">Prepare presentation slides</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Direction 6: Elegant/Serif -->
+            <div class="direction dir6">
+                <div class="direction-title">
+                    <h2>Direction 6: Elegant Refined</h2>
+                    <p class="direction-description">Sophisticated aesthetic. Left borders, classic color. Premium feel.</p>
+                </div>
+                <div class="mockup">
+                    <div class="task">
+                        <div class="checkbox"></div>
+                        <div class="content">
+                            <div class="title">Review design mockups</div>
+                        </div>
+                    </div>
+                    <div class="task done">
+                        <div class="checkbox"></div>
+                        <div class="content">
+                            <div class="title">Complete PRD review</div>
+                        </div>
+                    </div>
+                    <div class="task">
+                        <div class="checkbox"></div>
+                        <div class="content">
+                            <div class="title">Schedule team standup</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Direction 7: Dark/Modern -->
+            <div class="direction dir7">
+                <div class="direction-title">
+                    <h2>Direction 7: Dark Modern</h2>
+                    <p class="direction-description">Dark theme with blue accents. Modern, reduced eye strain. Bold contrast.</p>
+                </div>
+                <div class="mockup">
+                    <div class="task">
+                        <div class="checkbox"></div>
+                        <div class="content">
+                            <div class="title">Review design mockups</div>
+                        </div>
+                    </div>
+                    <div class="task done">
+                        <div class="checkbox"></div>
+                        <div class="content">
+                            <div class="title">Complete PRD review</div>
+                        </div>
+                    </div>
+                    <div class="task">
+                        <div class="checkbox"></div>
+                        <div class="content">
+                            <div class="title">Schedule team standup</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Direction 8: Colorful/Personality -->
+            <div class="direction dir8">
+                <div class="direction-title">
+                    <h2>Direction 8: Colorful Personality</h2>
+                    <p class="direction-description">Teal accents, colored backgrounds, friendly tone. More personality, less corporate.</p>
+                </div>
+                <div class="mockup">
+                    <div class="task">
+                        <div class="checkbox"></div>
+                        <div class="content">
+                            <div class="title">Review design mockups</div>
+                        </div>
+                    </div>
+                    <div class="task done">
+                        <div class="checkbox"></div>
+                        <div class="content">
+                            <div class="title">Complete PRD review</div>
+                        </div>
+                    </div>
+                    <div class="task">
+                        <div class="checkbox"></div>
+                        <div class="content">
+                            <div class="title">Schedule team standup</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="evaluation">
+            <h2>✅ How to Evaluate Design Directions</h2>
+            <div class="evaluation-criteria">
+                <div class="criterion">
+                    <div class="criterion-title">Layout Intuitiveness</div>
+                    <div class="criterion-desc">Which information hierarchy feels most natural? How easily do you scan the list?</div>
+                </div>
+                <div class="criterion">
+                    <div class="criterion-title">Interaction Style</div>
+                    <div class="criterion-desc">Does the interaction feel responsive and satisfying? Can you imagine marking tasks done?</div>
+                </div>
+                <div class="criterion">
+                    <div class="criterion-title">Visual Weight</div>
+                    <div class="criterion-desc">Does the visual density match your brand? Spacious or compact?</div>
+                </div>
+                <div class="criterion">
+                    <div class="criterion-title">Navigation Clarity</div>
+                    <div class="criterion-desc">Can you understand where tasks go? Is the visual hierarchy clear?</div>
+                </div>
+                <div class="criterion">
+                    <div class="criterion-title">Emotional Response</div>
+                    <div class="criterion-desc">Which direction makes you feel confident, accomplished, calm? Which feels modern?</div>
+                </div>
+                <div class="criterion">
+                    <div class="criterion-title">Implementation Fit</div>
+                    <div class="criterion-desc">Which direction would be easiest to build with Tailwind? Most maintainable?</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
