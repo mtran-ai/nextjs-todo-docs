@@ -12,6 +12,52 @@ project_key: NOKEY
 tracking_system: file-system
 story_location: _bmad-output/implementation-artifacts
 
+# GitHub Integration
+github:
+  project_id: "PVT_kwHOCmBzIc4BTyH5"
+  project_number: 1
+  repository: "mtran-ai/nextjs-todo-docs"
+  items:
+    "1-1-initialize-nextjs-16-2-2-project-with-configuration": "PVTI_lAHOCmBzIc4BTyH5zgpKBYw"
+    "1-2-implement-tailwind-css-design-token-system": "PVTI_lAHOCmBzIc4BTyH5zgpKBY8"
+    "1-3-set-up-shadcn-ui-component-library": "PVTI_lAHOCmBzIc4BTyH5zgpKBZY"
+    "1-4-create-project-structure-and-utility-configuration": "PVTI_lAHOCmBzIc4BTyH5zgpKBZ0"
+    "2-1-set-up-nextauth-v5-authentication": "PVTI_lAHOCmBzIc4BTyH5zgpKBaI"
+    "2-2-build-modern-sign-up-form-with-validation": "PVTI_lAHOCmBzIc4BTyH5zgpKBao"
+    "2-3-build-modern-sign-in-form-with-validation": "PVTI_lAHOCmBzIc4BTyH5zgpKBa0"
+    "2-4-create-account-settings-profile-page": "PVTI_lAHOCmBzIc4BTyH5zgpKBbE"
+    "2-5-implement-sign-out-functionality": "PVTI_lAHOCmBzIc4BTyH5zgpKBbo"
+    "2-6-add-loading-states-and-error-handling-to-auth-forms": "PVTI_lAHOCmBzIc4BTyH5zgpKBb0"
+    "2-7-ensure-authentication-pages-meet-accessibility-responsive-standards": "PVTI_lAHOCmBzIc4BTyH5zgpKBcI"
+    "3-1-create-task-list-page-layout-and-empty-state": "PVTI_lAHOCmBzIc4BTyH5zgpKBdM"
+    "3-2-implement-create-task-form-quick-modal-dialog": "PVTI_lAHOCmBzIc4BTyH5zgpKBdc"
+    "3-3-implement-task-list-display-with-visual-hierarchy": "PVTI_lAHOCmBzIc4BTyH5zgpKBdo"
+    "3-4-mark-task-complete-with-smooth-checkbox-animation": "PVTI_lAHOCmBzIc4BTyH5zgpKBeI"
+    "3-5-edit-task-details-title-description-due-date": "PVTI_lAHOCmBzIc4BTyH5zgpKBec"
+    "3-6-delete-task-with-confirmation": "PVTI_lAHOCmBzIc4BTyH5zgpKBek"
+    "3-7-implement-full-responsive-design-accessibility-for-task-management": "PVTI_lAHOCmBzIc4BTyH5zgpKBfA"
+    "4-1-implement-task-filtering-by-completion-status": "PVTI_lAHOCmBzIc4BTyH5zgpKBfI"
+    "4-2-implement-task-search-by-name-and-description": "PVTI_lAHOCmBzIc4BTyH5zgpKBfc"
+    "4-3-implement-task-sorting-by-due-date": "PVTI_lAHOCmBzIc4BTyH5zgpKBf4"
+    "4-4-test-and-polish-task-organization-features": "PVTI_lAHOCmBzIc4BTyH5zgpKBgk"
+    "5-1-create-task-detail-view-page": "PVTI_lAHOCmBzIc4BTyH5zgpKBgw"
+    "5-2-implement-task-edit-form-with-form-validation": "PVTI_lAHOCmBzIc4BTyH5zgpKBhE"
+    "5-3-implement-accessible-date-time-picker": "PVTI_lAHOCmBzIc4BTyH5zgpKBhM"
+    "5-4-task-detail-and-form-responsive-accessibility-polish": "PVTI_lAHOCmBzIc4BTyH5zgpKBho"
+    "6-1-implement-task-comments-feature": "PVTI_lAHOCmBzIc4BTyH5zgpKBh0"
+    "6-2-implement-task-sharing-via-url": "PVTI_lAHOCmBzIc4BTyH5zgpKBiE"
+    "6-3-implement-comment-editing-and-deletion": "PVTI_lAHOCmBzIc4BTyH5zgpKBiU"
+    "6-4-implement-comment-threads-with-clear-organization": "PVTI_lAHOCmBzIc4BTyH5zgpKBik"
+    "7-1-implement-github-repository-linking": "PVTI_lAHOCmBzIc4BTyH5zgpKBis"
+    "7-2-display-github-repository-metadata-on-task": "PVTI_lAHOCmBzIc4BTyH5zgpKBjQ"
+    "7-3-create-dedicated-github-repository-view": "PVTI_lAHOCmBzIc4BTyH5zgpKBjg"
+    "7-4-test-github-integration-for-responsive-accessibility": "PVTI_lAHOCmBzIc4BTyH5zgpKBjw"
+    "8-1-implement-dark-mode-support": "PVTI_lAHOCmBzIc4BTyH5zgpKBj4"
+    "8-2-ensure-full-wcag-aa-accessibility-compliance": "PVTI_lAHOCmBzIc4BTyH5zgpKBkI"
+    "8-3-implement-comprehensive-responsive-design-across-all-features": "PVTI_lAHOCmBzIc4BTyH5zgpKBkk"
+    "8-4-final-visual-polish-and-brand-consistency": "PVTI_lAHOCmBzIc4BTyH5zgpKBk8"
+    "8-5-create-comprehensive-qa-test-plan-and-validation": "PVTI_lAHOCmBzIc4BTyH5zgpKBlU"
+
 development_status:
   # EPIC 1: PROJECT SETUP & DESIGN SYSTEM FOUNDATION (100% COMPLETE)
   epic-1: done
@@ -45,7 +91,7 @@ development_status:
 
   # EPIC 4: TASK ORGANIZATION & EFFICIENT DISCOVERY (25% COMPLETE - 1/4 stories)
   epic-4: in-progress
-  4-1-implement-task-filtering-by-completion-status: in-progress
+  4-1-implement-task-filtering-by-completion-status: ready-for-dev
   4-2-implement-task-search-by-name-and-description: done
   4-3-implement-task-sorting-by-due-date: in-progress
   4-4-test-and-polish-task-organization-features: in-progress
